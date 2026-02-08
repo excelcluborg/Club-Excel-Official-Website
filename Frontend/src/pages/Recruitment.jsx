@@ -1,0 +1,16 @@
+const Recruitment = () => {
+    return (
+        <div className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+            <div data-aos="fade-up" className="text-center">
+                <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-8 uppercase">
+                    Recruitment
+                </h1>
+                <p className="text-neutral-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                    Join the legacy of excellence.
+                </p>
+            </div>
+        </div>
+    );
+};
+
+export default Recruitment;
