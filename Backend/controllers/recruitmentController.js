@@ -1,4 +1,35 @@
 const Recruitment = require('../models/Recruitment');
+const RecruitmentSettings = require('../models/RecruitmentSettings');
+
+// GET recruitment settings
+exports.getSettings = async (req, res) => {
+    try {
+        let settings = await RecruitmentSettings.findOne();
+        if (!settings) {
+            settings = new RecruitmentSettings({ whatsappLink: "" });
+            await settings.save();
+        }
+        res.status(200).json(settings);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// UPDATE recruitment settings
+exports.updateSettings = async (req, res) => {
+    try {
+        let settings = await RecruitmentSettings.findOne();
+        if (!settings) {
+            settings = new RecruitmentSettings(req.body);
+        } else {
+            settings.whatsappLink = req.body.whatsappLink;
+        }
+        const savedSettings = await settings.save();
+        res.status(200).json(savedSettings);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
 
 // GET all recruits
 exports.getAllRecruits = async (req, res) => {

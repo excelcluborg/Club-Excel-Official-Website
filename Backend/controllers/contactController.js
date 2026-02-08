@@ -21,6 +21,17 @@ exports.getAllContacts = async (req, res) => {
     }
 };
 
+// UPDATE contact registration (edit query)
+exports.updateContact = async (req, res) => {
+    try {
+        const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedContact) return res.status(404).json({ message: "Contact not found" });
+        res.status(200).json(updatedContact);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
 // DELETE one contact
 exports.deleteContact = async (req, res) => {
     try {

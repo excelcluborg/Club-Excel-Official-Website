@@ -109,8 +109,8 @@ const Sankalp = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-3 mt-auto">
-                    {/* Dedicated WhatsApp Group Link */}
-                    {event.whatsappGroup && (
+                    {/* WhatsApp Group Link - Priority to whatsappGroup field, fallback to link field */}
+                    {event.whatsappGroup ? (
                         <a
                             href={event.whatsappGroup}
                             target="_blank"
@@ -122,9 +122,7 @@ const Sankalp = () => {
                             </svg>
                             JOIN WHATSAPP GROUP
                         </a>
-                    )}
-                    {/* External Link shown as WhatsApp Button (as requested) */}
-                    {event.link && (
+                    ) : event.link ? (
                         <a
                             href={event.link}
                             target="_blank"
@@ -136,8 +134,9 @@ const Sankalp = () => {
                             </svg>
                             JOIN WHATSAPP GROUP
                         </a>
-                    )}
-                    {isUpcoming && (
+                    ) : null}
+
+                    {isUpcoming ? (
                         <Link
                             to={`/register/sankalp/${event._id}`}
                             className="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl hover:bg-white hover:text-black transition-all duration-500 flex items-center justify-center gap-4 group/btn shadow-xl text-center"
@@ -145,6 +144,10 @@ const Sankalp = () => {
                             REGISTER NOW
                             <ArrowRight className="w-6 h-6 group-hover/btn:translate-x-2 transition-transform" />
                         </Link>
+                    ) : (
+                        <div className="w-full bg-neutral-800/50 text-neutral-500 font-black py-4 rounded-2xl border border-white/5 flex items-center justify-center gap-4 shadow-xl text-center cursor-default uppercase">
+                            Registration Closed
+                        </div>
                     )}
                 </div>
             </div>

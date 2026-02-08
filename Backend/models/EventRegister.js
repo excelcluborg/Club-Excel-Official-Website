@@ -23,7 +23,6 @@ const EventRegisterSchema = new mongoose.Schema({
     },
     locality: {
         type: String,
-        enum: ['hostelite', 'localite'],
         required: true
     }
 }, { timestamps: true });

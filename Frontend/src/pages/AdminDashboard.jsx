@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Calendar, Trophy, Settings, LogOut, Hexagon } from 'lucide-react';
+import { LayoutDashboard, Users, Calendar, Trophy, Settings, LogOut, Hexagon, MessageSquare, User } from 'lucide-react';
 import AdminMembers from '../components/dashboard/AdminMembers';
 import AdminEvents from '../components/dashboard/AdminEvents';
 import AdminSankalpEvents from '../components/dashboard/AdminSankalpEvents';
 import AdminEventRegistrations from '../components/dashboard/AdminEventRegistrations';
 import AdminSankalpRegistrations from '../components/dashboard/AdminSankalpRegistrations';
+import AdminQueries from '../components/dashboard/AdminQueries';
+import AdminRecruitment from '../components/dashboard/AdminRecruitment';
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -14,7 +16,9 @@ const AdminDashboard = () => {
     const [stats, setStats] = useState({
         members: 0,
         events: 0,
-        sankalp: 0
+        sankalp: 0,
+        queries: 0,
+        recruits: 0
     });
 
     useEffect(() => {
@@ -29,22 +33,33 @@ const AdminDashboard = () => {
 
     const fetchStats = async () => {
         try {
-            const [mRes, eRes, sRes] = await Promise.all([
+            const token = localStorage.getItem('adminToken');
+            const [mRes, eRes, sRes, qRes, rRes] = await Promise.all([
                 fetch('http://localhost:5000/api/members'),
                 fetch('http://localhost:5000/api/event'),
-                fetch('http://localhost:5000/api/sankalpevent')
+                fetch('http://localhost:5000/api/sankalpevent'),
+                fetch('http://localhost:5000/api/contacts', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch('http://localhost:5000/api/recruitment', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
             ]);
 
-            const [m, e, s] = await Promise.all([
+            const [m, e, s, q, r] = await Promise.all([
                 mRes.json(),
                 eRes.json(),
-                sRes.json()
+                sRes.json(),
+                qRes.json(),
+                rRes.json()
             ]);
 
             setStats({
-                members: m.length,
-                events: e.length,
-                sankalp: s.length
+                members: Array.isArray(m) ? m.length : 0,
+                events: Array.isArray(e) ? e.length : 0,
+                sankalp: Array.isArray(s) ? s.length : 0,
+                queries: Array.isArray(q) ? q.length : 0,
+                recruits: Array.isArray(r) ? r.length : 0
             });
         } catch (error) {
             console.error('Error fetching stats:', error);
@@ -66,6 +81,8 @@ const AdminDashboard = () => {
         { id: 'event-regs', label: 'Event Regs', icon: Users },
         { id: 'sankalp', label: 'Sankalp', icon: Trophy },
         { id: 'sankalp-regs', label: 'Sankalp Regs', icon: Users },
+        { id: 'queries', label: 'Queries', icon: MessageSquare },
+        { id: 'recruitment', label: 'Recruitment', icon: User },
     ];
 
     return (
@@ -153,6 +170,24 @@ const AdminDashboard = () => {
                                     <Trophy className="w-3 h-3" /> Manage Sankalp →
                                 </div>
                             </div>
+
+                            <div className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem] hover:border-green-500/30 hover:bg-white/[0.05] transition-all duration-500 cursor-pointer overflow-hidden" onClick={() => setActiveTab('queries')}>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-green-500/20 transition-all duration-700"></div>
+                                <p className="text-neutral-400 text-[10px] mb-2 uppercase tracking-[0.2em] font-black">User Queries</p>
+                                <h3 className="text-5xl font-bold mb-4">{stats.queries}</h3>
+                                <div className="flex items-center text-[10px] text-green-400 gap-2 font-black uppercase tracking-widest group-hover:gap-3 transition-all duration-300">
+                                    <MessageSquare className="w-3 h-3" /> Manage Queries →
+                                </div>
+                            </div>
+
+                            <div className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem] hover:border-blue-500/30 hover:bg-white/[0.05] transition-all duration-500 cursor-pointer overflow-hidden" onClick={() => setActiveTab('recruitment')}>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/20 transition-all duration-700"></div>
+                                <p className="text-neutral-400 text-[10px] mb-2 uppercase tracking-[0.2em] font-black">Total Recruits</p>
+                                <h3 className="text-5xl font-bold mb-4">{stats.recruits}</h3>
+                                <div className="flex items-center text-[10px] text-blue-400 gap-2 font-black uppercase tracking-widest group-hover:gap-3 transition-all duration-300">
+                                    <User className="w-3 h-3" /> Manage Recruitment →
+                                </div>
+                            </div>
                         </div>
 
                         <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-10 relative overflow-hidden">
@@ -191,6 +226,8 @@ const AdminDashboard = () => {
                 {activeTab === 'event-regs' && <AdminEventRegistrations />}
                 {activeTab === 'sankalp' && <AdminSankalpEvents />}
                 {activeTab === 'sankalp-regs' && <AdminSankalpRegistrations />}
+                {activeTab === 'queries' && <AdminQueries />}
+                {activeTab === 'recruitment' && <AdminRecruitment />}
             </div>
         </div>
     );

@@ -3,22 +3,48 @@ import { Mail, Phone, MapPin, Send, User } from 'lucide-react';
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         phone: '',
         message: ''
     });
+    const [submitting, setSubmitting] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Submitted:', formData);
-        // Add logic here to send email or save to DB
-        alert('Thank you for contacting us! We will get back to you soon.');
+        setSubmitting(true);
+        try {
+            const response = await fetch('http://localhost:5000/api/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                alert('Thank you for contacting us! We will get back to you soon.');
+                setFormData({
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                });
+            } else {
+                alert('Failed to send message. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error submitting contact form:', error);
+            alert('Error connecting to server.');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -79,8 +105,8 @@ const ContactUs = () => {
                                 <label className="text-xs font-mono uppercase tracking-widest text-neutral-500 ml-1">First Name</label>
                                 <input
                                     type="text"
-                                    name="firstName"
-                                    value={formData.firstName}
+                                    name="firstname"
+                                    value={formData.firstname}
                                     onChange={handleChange}
                                     required
                                     placeholder="John"
@@ -91,8 +117,8 @@ const ContactUs = () => {
                                 <label className="text-xs font-mono uppercase tracking-widest text-neutral-500 ml-1">Last Name</label>
                                 <input
                                     type="text"
-                                    name="lastName"
-                                    value={formData.lastName}
+                                    name="lastname"
+                                    value={formData.lastname}
                                     onChange={handleChange}
                                     required
                                     placeholder="Doe"
@@ -142,11 +168,18 @@ const ContactUs = () => {
 
                         <button
                             type="submit"
-                            className="w-full group relative p-1 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]"
+                            disabled={submitting}
+                            className="w-full group relative p-1 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] disabled:opacity-50"
                         >
                             <div className="bg-[#080808] rounded-[0.9rem] py-4 flex items-center justify-center gap-3">
-                                <span className="font-mono text-sm tracking-widest text-white uppercase group-hover:text-purple-400 transition-colors">Send Message</span>
-                                <Send className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                                {submitting ? (
+                                    <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                                ) : (
+                                    <>
+                                        <span className="font-mono text-sm tracking-widest text-white uppercase group-hover:text-purple-400 transition-colors">Send Message</span>
+                                        <Send className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                                    </>
+                                )}
                             </div>
                         </button>
                     </form>
