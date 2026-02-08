@@ -166,26 +166,6 @@ const Events = () => {
                             )}
 
                             <div className="pt-4 flex flex-col gap-4">
-                                {event.whatsappGroup ? (
-                                    <a
-                                        href={event.whatsappGroup}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full bg-green-600 text-white font-black py-5 rounded-3xl hover:bg-green-500 transition-all duration-300 flex items-center justify-center gap-3 shadow-xl"
-                                    >
-                                        JOIN WHATSAPP GROUP
-                                    </a>
-                                ) : event.link ? (
-                                    <a
-                                        href={event.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full bg-green-600 text-white font-black py-5 rounded-3xl hover:bg-green-500 transition-all duration-300 flex items-center justify-center gap-3 shadow-xl"
-                                    >
-                                        JOIN WHATSAPP GROUP
-                                    </a>
-                                ) : null}
-
                                 {isUpcoming ? (
                                     <Link
                                         to={`/register/event/${event._id}`}

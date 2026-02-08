@@ -140,18 +140,6 @@ const Recruitment = () => {
                         </div>
                     </div>
 
-                    {whatsappLink && (
-                        <div className="pt-8">
-                            <a
-                                href={whatsappLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 text-green-500 font-black uppercase tracking-[0.2em] text-[10px] hover:gap-4 transition-all group"
-                            >
-                                <MessageCircle className="w-4 h-4" /> Join Recruitment WhatsApp <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                            </a>
-                        </div>
-                    )}
                 </div>
 
                 {/* Form Section */}
@@ -219,8 +207,8 @@ const Recruitment = () => {
                                             type="button"
                                             onClick={() => setFormData({ ...formData, gender: g })}
                                             className={`flex-1 py-4 rounded-2xl border transition-all uppercase text-[10px] font-black tracking-widest ${formData.gender === g
-                                                    ? 'bg-blue-500 border-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]'
-                                                    : 'bg-white/[0.03] border-white/5 text-neutral-500 hover:border-white/10'
+                                                ? 'bg-blue-500 border-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+                                                : 'bg-white/[0.03] border-white/5 text-neutral-500 hover:border-white/10'
                                                 }`}
                                         >
                                             {g}
@@ -321,8 +309,8 @@ const Recruitment = () => {
                                             type="button"
                                             onClick={() => setFormData({ ...formData, locality: l })}
                                             className={`flex-1 py-4 rounded-2xl border transition-all uppercase text-[10px] font-black tracking-widest ${formData.locality === l
-                                                    ? 'bg-blue-500 border-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]'
-                                                    : 'bg-white/[0.03] border-white/5 text-neutral-500 hover:border-white/10'
+                                                ? 'bg-blue-500 border-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+                                                : 'bg-white/[0.03] border-white/5 text-neutral-500 hover:border-white/10'
                                                 }`}
                                         >
                                             {l}
