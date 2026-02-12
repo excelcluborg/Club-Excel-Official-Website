@@ -14,7 +14,7 @@ const Sankalp = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/sankalpevent');
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/sankalpevent');
             const data = await response.json();
             setEvents(data);
         } catch (error) {
