@@ -35,7 +35,7 @@ const AdminEvents = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/event');
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/event');
             const data = await response.json();
             setEvents(data);
         } catch (error) {
@@ -109,8 +109,8 @@ const AdminEvents = () => {
 
         try {
             const url = currentEvent
-                ? `http://localhost:5000/api/event/${currentEvent._id}`
-                : 'http://localhost:5000/api/event';
+                ? `https://club-excel-official-website.onrender.com/api/event/${currentEvent._id}`
+                : 'https://club-excel-official-website.onrender.com/api/event';
 
             const method = currentEvent ? 'PUT' : 'POST';
 
@@ -156,7 +156,7 @@ const AdminEvents = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`http://localhost:5000/api/event/${id}`, {
+                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/event/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`
