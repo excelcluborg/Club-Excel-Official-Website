@@ -35,7 +35,7 @@ const AdminSankalpEvents = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/sankalpevent');
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/sankalpevent');
             const data = await response.json();
             setEvents(data);
         } catch (error) {
@@ -107,8 +107,8 @@ const AdminSankalpEvents = () => {
 
         try {
             const url = currentEvent
-                ? `http://localhost:5000/api/sankalpevent/${currentEvent._id}`
-                : 'http://localhost:5000/api/sankalpevent';
+                ? `https://club-excel-official-website.onrender.com/api/sankalpevent/${currentEvent._id}`
+                : 'https://club-excel-official-website.onrender.com/api/sankalpevent';
 
             const method = currentEvent ? 'PUT' : 'POST';
 
@@ -154,7 +154,7 @@ const AdminSankalpEvents = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`http://localhost:5000/api/sankalpevent/${id}`, {
+                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/sankalpevent/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`
