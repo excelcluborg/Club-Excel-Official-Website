@@ -35,13 +35,13 @@ const AdminDashboard = () => {
         try {
             const token = localStorage.getItem('adminToken');
             const [mRes, eRes, sRes, qRes, rRes] = await Promise.all([
-                fetch('http://localhost:5000/api/members'),
-                fetch('http://localhost:5000/api/event'),
-                fetch('http://localhost:5000/api/sankalpevent'),
-                fetch('http://localhost:5000/api/contacts', {
+                fetch('https://club-excel-official-website.onrender.com/api/members'),
+                fetch('https://club-excel-official-website.onrender.com/api/event'),
+                fetch('https://club-excel-official-website.onrender.com/api/sankalpevent'),
+                fetch('https://club-excel-official-website.onrender.com/api/contacts', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/recruitment', {
+                fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);
