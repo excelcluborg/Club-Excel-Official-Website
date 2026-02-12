@@ -32,7 +32,7 @@ const AdminSankalpRegistrations = () => {
     const fetchRegistrations = async () => {
         const token = localStorage.getItem('adminToken');
         try {
-            const response = await fetch('http://localhost:5000/api/sankalpregisters', {
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/sankalpregisters', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -78,8 +78,8 @@ const AdminSankalpRegistrations = () => {
 
         const token = localStorage.getItem('adminToken');
         const url = currentReg
-            ? `http://localhost:5000/api/sankalpregisters/${currentReg._id}`
-            : 'http://localhost:5000/api/sankalpregisters';
+            ? `https://club-excel-official-website.onrender.com/api/sankalpregisters/${currentReg._id}`
+            : 'https://club-excel-official-website.onrender.com/api/sankalpregisters';
         const method = currentReg ? 'PUT' : 'POST';
 
         try {
@@ -126,7 +126,7 @@ const AdminSankalpRegistrations = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`http://localhost:5000/api/sankalpregisters/${id}`, {
+                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/sankalpregisters/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`
