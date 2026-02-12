@@ -32,7 +32,7 @@ const AdminEventRegistrations = () => {
     const fetchRegistrations = async () => {
         const token = localStorage.getItem('adminToken');
         try {
-            const response = await fetch('http://localhost:5000/api/eventregisters', {
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/eventregisters', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -78,8 +78,8 @@ const AdminEventRegistrations = () => {
 
         const token = localStorage.getItem('adminToken');
         const url = currentReg
-            ? `http://localhost:5000/api/eventregisters/${currentReg._id}`
-            : 'http://localhost:5000/api/eventregisters';
+            ? `https://club-excel-official-website.onrender.com/api/eventregisters/${currentReg._id}`
+            : 'https://club-excel-official-website.onrender.com/api/eventregisters';
         const method = currentReg ? 'PUT' : 'POST';
 
         try {
@@ -126,7 +126,7 @@ const AdminEventRegistrations = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`http://localhost:5000/api/eventregisters/${id}`, {
+                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/eventregisters/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`
