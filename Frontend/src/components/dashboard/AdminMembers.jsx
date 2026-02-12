@@ -34,7 +34,7 @@ const AdminMembers = () => {
 
     const fetchMembers = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/members');
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/members');
             const data = await response.json();
             setMembers(data);
         } catch (error) {
@@ -100,8 +100,8 @@ const AdminMembers = () => {
 
         try {
             const url = currentMember
-                ? `http://localhost:5000/api/members/${currentMember._id}`
-                : 'http://localhost:5000/api/members';
+                ? `https://club-excel-official-website.onrender.com/api/members/${currentMember._id}`
+                : 'https://club-excel-official-website.onrender.com/api/members';
 
             const method = currentMember ? 'PUT' : 'POST';
 
@@ -147,7 +147,7 @@ const AdminMembers = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`http://localhost:5000/api/members/${id}`, {
+                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/members/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`
