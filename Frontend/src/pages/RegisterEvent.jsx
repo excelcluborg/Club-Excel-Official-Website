@@ -30,7 +30,7 @@ const RegisterEvent = () => {
     const fetchEvent = async () => {
         try {
             const apiPath = type === 'sankalp' ? 'sankalpevent' : 'event';
-            const response = await fetch(`http://localhost:5000/api/${apiPath}`);
+            const response = await fetch(`https://club-excel-official-website.onrender.com/api/${apiPath}`);
             const events = await response.json();
             const foundEvent = events.find(e => e._id === id);
 
@@ -67,7 +67,7 @@ const RegisterEvent = () => {
         };
 
         try {
-            const response = await fetch(`http://localhost:5000/api/${apiPath}`, {
+            const response = await fetch(`https://club-excel-official-website.onrender.com/api/${apiPath}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
