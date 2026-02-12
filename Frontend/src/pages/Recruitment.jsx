@@ -32,7 +32,7 @@ const Recruitment = () => {
 
     const fetchSettings = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/recruitment/settings');
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment/settings');
             const data = await response.json();
             if (data.whatsappLink) {
                 setWhatsappLink(data.whatsappLink);
@@ -50,7 +50,7 @@ const Recruitment = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const response = await fetch('http://localhost:5000/api/recruitment', {
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
