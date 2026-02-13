@@ -195,15 +195,16 @@ const Sankalp = () => {
 
             {/* Right Side - Content */}
             <div className="flex-1 p-5 flex flex-col relative text-justify">
-                <div className="absolute top-6 right-6">
-                    <span className={`px-4 py-1.5 rounded-full ${isUpcoming ? 'bg-indigo-600' : 'bg-neutral-800'} text-white text-[10px] uppercase tracking-[0.2em] font-black border border-white/10`}>
-                        {isUpcoming ? 'Upcoming' : 'Completed'}
-                    </span>
+                <div className="flex justify-between items-start mb-2 gap-4">
+                    <h3 className="text-xl font-black group-hover:text-indigo-400 transition-colors duration-300 line-clamp-2">
+                        {event.name}
+                    </h3>
+                    <div className="shrink-0 pt-1">
+                        <span className={`px-4 py-1.5 rounded-full ${isUpcoming ? 'bg-indigo-600' : 'bg-neutral-800'} text-white text-[10px] uppercase tracking-[0.2em] font-black border border-white/10 whitespace-nowrap`}>
+                            {isUpcoming ? 'Upcoming' : 'Completed'}
+                        </span>
+                    </div>
                 </div>
-
-                <h3 className="text-xl font-black mb-2 group-hover:text-indigo-400 transition-colors duration-300 pr-24 line-clamp-1">
-                    {event.name}
-                </h3>
 
                 {/* Event Details */}
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
@@ -268,7 +269,7 @@ const Sankalp = () => {
     return (
         <div className="pt-32 pb-40 px-6 max-w-7xl mx-auto min-h-screen">
             <div data-aos="fade-up" className="text-center mb-32">
-                <h1 className="text-7xl md:text-9xl font-black tracking-[ -0.05em] text-white mb-10 uppercase">
+                <h1 className="text-5xl md:text-8x font-black tracking-[ -0.05em] text-white mb-10 uppercase">
                     Sankalp<span className="text-indigo-600">.</span>
                 </h1>
                 <p className="text-neutral-500 max-w-3xl mx-auto text-xl font-medium leading-relaxed">
