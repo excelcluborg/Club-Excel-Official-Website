@@ -154,7 +154,7 @@ const Home = () => {
                         NIST's Premier Tech Community
                     </div>
 
-                    <h1 data-aos="fade-up" data-aos-delay="100" className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-500 leading-[0.9] lg:leading-[0.85] hover-trigger cursor-default drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                    <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-500 leading-[0.9] lg:leading-[0.85] hover-trigger cursor-default drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                         BUILD THE<br />IMPOSSIBLE
                     </h1>
 
@@ -189,8 +189,8 @@ const Home = () => {
                     </div>
 
                     {/* The "Portal" Window */}
-                    <div className="portal-container rounded-2xl border border-white/10 bg-neutral-900/40 backdrop-blur-md p-3 shadow-[0_0_50px_-12px_rgba(59,130,246,0.1)]">
-                        <div className="portal-window relative aspect-video bg-[#050505] rounded-xl overflow-hidden group border border-white/5">
+                    <div className="portal-container rounded-2xl border border-white/10 bg-neutral-900/40 backdrop-blur-md p-3 shadow-[0_0_50px_-12px_rgba(59,130,246,0.15)]">
+                        <div className="portal-window relative aspect-auto sm:aspect-video bg-[#050505] rounded-xl overflow-hidden group border border-white/5">
 
                             {/* Fake UI Top Bar */}
                             <div className="absolute top-0 left-0 right-0 h-9 bg-neutral-900/90 border-b border-white/5 flex items-center px-4 gap-2 z-20">
