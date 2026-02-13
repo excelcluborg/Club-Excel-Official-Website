@@ -1,31 +1,53 @@
-import { Hexagon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Hexagon, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.webp';
 
 const Navbar = () => {
     const location = useLocation();
+    const [isOpen, setIsOpen] = useState(false);
     const isHomePage = location.pathname === '/';
+
+    const menuItems = [
+        { name: 'Home', path: '/', isLink: true },
+        { name: 'About', path: '#about', isLink: false, homeOnly: true },
+        { name: 'Domains', path: '#domains', isLink: false, homeOnly: true },
+        { name: 'Sankalp', path: '/sankalp', isLink: true },
+        { name: 'Events', path: '/events', isLink: true },
+        { name: 'Our Team', path: '/ourteam', isLink: true },
+        { name: 'Contact Us', path: '/contactus', isLink: true },
+    ];
+
+    const filteredItems = menuItems.filter(item => !item.homeOnly || isHomePage);
+
     return (
-        <nav id="navigation" className="fixed top-6 left-0 right-0 z-50 flex justify-center">
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 px-6 py-3 rounded-full flex items-center gap-8 hover-trigger transition-all hover:bg-white/10 shadow-2xl shadow-black/50">
-                <Link to="/" className="text-sm font-bold tracking-tight text-white flex items-center gap-3">
+        <nav id="navigation" className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+            <div className="w-full max-w-5xl backdrop-blur-md bg-white/5 border border-white/10 px-6 py-3 rounded-full lg:rounded-full flex items-center justify-between lg:justify-center lg:gap-8 hover-trigger transition-all hover:bg-white/10 shadow-2xl shadow-black/50 relative">
+
+                {/* Logo */}
+                <Link to="/" className="text-sm font-bold tracking-tight text-white flex items-center gap-3 z-[60]">
                     <img src={logo} alt="Club Excel" className="w-8 h-8 object-contain" />
-                    CLUB EXCEL
+                    <span className="hidden sm:inline">CLUB EXCEL</span>
                 </Link>
+
+                {/* Desktop Nav */}
                 <div className="hidden lg:flex items-center gap-6">
-                    <Link to="/" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">Home</Link>
-                    {isHomePage && (
-                        <>
-                            <a href="#about" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">About</a>
-                            <a href="#domains" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">Domains</a>
-                        </>
-                    )}
-                    <Link to="/sankalp" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">Sankalp</Link>
-                    <Link to="/events" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">Events</Link>
-                    <Link to="/ourteam" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">Our Team</Link>
-                    <Link to="/contactus" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide hover-trigger">Contact Us</Link>
+                    {filteredItems.map((item) => (
+                        item.isLink ? (
+                            <Link key={item.name} to={item.path} className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide">
+                                {item.name}
+                            </Link>
+                        ) : (
+                            <a key={item.name} href={item.path} className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide">
+                                {item.name}
+                            </a>
+                        )
+                    ))}
                 </div>
-                <div className="flex items-center gap-3">
+
+                {/* Desktop Buttons */}
+                <div className="hidden lg:flex items-center gap-3">
                     <Link to="/admin-login" className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide px-3">
                         Admin
                     </Link>
@@ -33,6 +55,66 @@ const Navbar = () => {
                         Join Now
                     </Link>
                 </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="lg:hidden text-white z-[60] p-1"
+                >
+                    {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+
+                {/* Mobile Nav Dropdown */}
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                            className="absolute top-full left-0 right-0 mt-4 bg-black/90 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 lg:hidden flex flex-col gap-4 shadow-2xl z-50 overflow-hidden"
+                        >
+                            <div className="flex flex-col gap-4">
+                                {filteredItems.map((item) => (
+                                    item.isLink ? (
+                                        <Link
+                                            key={item.name}
+                                            to={item.path}
+                                            onClick={() => setIsOpen(false)}
+                                            className="text-sm font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-widest border-b border-white/5 pb-2"
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    ) : (
+                                        <a
+                                            key={item.name}
+                                            href={item.path}
+                                            onClick={() => setIsOpen(false)}
+                                            className="text-sm font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-widest border-b border-white/5 pb-2"
+                                        >
+                                            {item.name}
+                                        </a>
+                                    )
+                                ))}
+                                <div className="flex flex-col gap-3 pt-2">
+                                    <Link
+                                        to="/admin-login"
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-sm font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-widest"
+                                    >
+                                        Admin Dashboard
+                                    </Link>
+                                    <Link
+                                        to="/recruitment"
+                                        onClick={() => setIsOpen(false)}
+                                        className="w-full text-center text-sm font-semibold bg-white text-black py-3 rounded-xl hover:bg-neutral-200 transition-colors"
+                                    >
+                                        Join Now
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </nav>
     );
