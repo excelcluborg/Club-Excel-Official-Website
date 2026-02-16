@@ -206,7 +206,7 @@ const AdminDashboard = () => {
 
                             <div className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 rounded-[2rem] hover:border-indigo-500/30 hover:bg-white/[0.05] transition-all duration-500 cursor-pointer overflow-hidden" onClick={() => setActiveTab('events')}>
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-indigo-500/20 transition-all duration-700"></div>
-                                <p className="text-neutral-400 text-[10px] mb-2 uppercase tracking-[0.2em] font-black">Active Events</p>
+                                <p className="text-neutral-400 text-[10px] mb-2 uppercase tracking-[0.2em] font-black">All Events</p>
                                 <h3 className="text-4xl lg:text-5xl font-bold mb-4">{stats.events}</h3>
                                 <div className="flex items-center text-[10px] text-indigo-400 gap-2 font-black uppercase tracking-widest group-hover:gap-3 transition-all duration-300">
                                     <Calendar className="w-3 h-3" /> Manage Events →
