@@ -35,7 +35,7 @@ const Home = () => {
                     </div>
 
                     <h1 data-aos="fade-up" data-aos-delay="100" className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-neutral-500 leading-[0.9] lg:leading-[0.85] hover-trigger cursor-default drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                        BUILD THE<br />IMPOSSIBLE
+                        UNITED AS<br />EXCELITES
                     </h1>
 
                     <p data-aos="fade-up" data-aos-delay="200" className="max-w-xl mx-auto text-neutral-400 text-sm md:text-base font-light leading-relaxed">
