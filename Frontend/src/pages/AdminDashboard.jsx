@@ -43,7 +43,7 @@ const AdminDashboard = () => {
                 fetch('https://club-excel-official-website.onrender.com/api/contacts', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/recruitment', {
+                fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);
