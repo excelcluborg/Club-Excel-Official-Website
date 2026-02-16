@@ -127,7 +127,7 @@ const ContactUs = () => {
                                     value={formData.firstname}
                                     onChange={handleChange}
                                     required
-                                    placeholder="John"
+                                    placeholder="Gourav"
                                     className="w-full bg-white/5 border border-white/5 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/50 transition-all duration-300"
                                 />
                             </div>
@@ -139,7 +139,7 @@ const ContactUs = () => {
                                     value={formData.lastname}
                                     onChange={handleChange}
                                     required
-                                    placeholder="Doe"
+                                    placeholder="Tiwari"
                                     className="w-full bg-white/5 border border-white/5 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/50 transition-all duration-300"
                                 />
                             </div>
@@ -153,7 +153,7 @@ const ContactUs = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                placeholder="john@example.com"
+                                placeholder="gourav@example.com"
                                 className="w-full bg-white/5 border border-white/5 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-purple-500/50 transition-all duration-300"
                             />
                         </div>
