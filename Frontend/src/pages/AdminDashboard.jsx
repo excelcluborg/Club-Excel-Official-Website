@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Calendar, Trophy, Settings, LogOut, Hexagon, MessageSquare, User, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Users, Calendar, Trophy, Settings, LogOut, Hexagon, MessageSquare, User, Menu, X, Image as ImageIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AdminMembers from '../components/dashboard/AdminMembers';
 import AdminEvents from '../components/dashboard/AdminEvents';
@@ -9,6 +9,8 @@ import AdminEventRegistrations from '../components/dashboard/AdminEventRegistrat
 import AdminSankalpRegistrations from '../components/dashboard/AdminSankalpRegistrations';
 import AdminQueries from '../components/dashboard/AdminQueries';
 import AdminRecruitment from '../components/dashboard/AdminRecruitment';
+import AdminAchievements from '../components/dashboard/AdminAchievements';
+import AdminGallery from '../components/dashboard/AdminGallery';
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -36,14 +38,18 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
         try {
             const token = localStorage.getItem('adminToken');
+            const baseUrl = window.location.hostname === 'localhost'
+                ? 'http://localhost:5000'
+                : 'https://club-excel-official-website.onrender.com';
+
             const [mRes, eRes, sRes, qRes, rRes] = await Promise.all([
-                fetch('https://club-excel-official-website.onrender.com/api/members'),
-                fetch('https://club-excel-official-website.onrender.com/api/event'),
-                fetch('https://club-excel-official-website.onrender.com/api/sankalpevent'),
-                fetch('https://club-excel-official-website.onrender.com/api/contacts', {
+                fetch(`${baseUrl}/api/members`),
+                fetch(`${baseUrl}/api/event`),
+                fetch(`${baseUrl}/api/sankalpevent`),
+                fetch(`${baseUrl}/api/contacts`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
+                fetch(`${baseUrl}/api/recruitment`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);
@@ -85,6 +91,8 @@ const AdminDashboard = () => {
         { id: 'sankalp-regs', label: 'Sankalp Regs', icon: Users },
         { id: 'queries', label: 'Queries', icon: MessageSquare },
         { id: 'recruitment', label: 'Recruitment', icon: User },
+        { id: 'achievements', label: 'Achievements', icon: Trophy },
+        { id: 'gallery', label: 'Gallery', icon: ImageIcon },
     ];
 
     const SidebarContent = () => (
@@ -280,6 +288,8 @@ const AdminDashboard = () => {
                     {activeTab === 'sankalp-regs' && <AdminSankalpRegistrations />}
                     {activeTab === 'queries' && <AdminQueries />}
                     {activeTab === 'recruitment' && <AdminRecruitment />}
+                    {activeTab === 'achievements' && <AdminAchievements />}
+                    {activeTab === 'gallery' && <AdminGallery />}
                 </div>
             </main>
         </div>

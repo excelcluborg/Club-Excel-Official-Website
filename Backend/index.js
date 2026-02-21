@@ -22,6 +22,7 @@ app.use('/api/sankalpevent', require('./routes/sankalpEventRoutes'));
 app.use('/api/recruitment', require('./routes/recruitmentRoutes'));
 app.use('/api/sankalpregisters', require('./routes/sankalpRegisterRoutes'));
 app.use('/api/eventregisters', require('./routes/eventRegisterRoutes'));
+app.use('/api/achievements', require('./routes/achievementRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));
 
 app.get('/', (req, res) => {

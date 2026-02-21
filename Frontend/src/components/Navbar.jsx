@@ -14,6 +14,7 @@ const Navbar = () => {
         { name: 'About', path: '#about', isLink: false, homeOnly: true },
         { name: 'Domains', path: '#domains', isLink: false, homeOnly: true },
         { name: 'Sankalp', path: '/sankalp', isLink: true },
+        { name: 'Achievements', path: '/achievements', isLink: true },
         { name: 'Events', path: '/events', isLink: true },
         { name: 'Our Team', path: '/ourteam', isLink: true },
         { name: 'Contact Us', path: '/contactus', isLink: true },

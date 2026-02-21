@@ -5,6 +5,7 @@ import OurTeam from './pages/OurTeam';
 import Sankalp from './pages/Sankalp';
 import Recruitment from './pages/Recruitment';
 import Events from './pages/Events';
+import Achievements from './pages/Achievements';
 import ContactUs from './pages/ContactUs';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -19,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
     return (
-        <Router>
+        <Router basename={import.meta.env.BASE_URL}>
             <Layout>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/sankalp" element={<Sankalp />} />
                     <Route path="/recruitment" element={<Recruitment />} />
                     <Route path="/events" element={<Events />} />
+                    <Route path="/achievements" element={<Achievements />} />
                     <Route path="/contactus" element={<ContactUs />} />
                     <Route path="/register/:type/:id" element={<RegisterEvent />} />
 

@@ -22,7 +22,11 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/auth/login', {
+            const baseUrl = window.location.hostname === 'localhost'
+                ? 'http://localhost:5000'
+                : 'https://club-excel-official-website.onrender.com';
+
+            const response = await fetch(`${baseUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
