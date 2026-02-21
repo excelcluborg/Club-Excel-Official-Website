@@ -11,16 +11,14 @@ const Navbar = () => {
 
     const menuItems = [
         { name: 'Home', path: '/', isLink: true },
-        { name: 'About', path: '#about', isLink: false, homeOnly: true },
-        { name: 'Domains', path: '#domains', isLink: false, homeOnly: true },
+        { name: 'About', path: isHomePage ? '#about' : '/#about', isLink: !isHomePage },
+        { name: 'Domains', path: isHomePage ? '#domains' : '/#domains', isLink: !isHomePage },
         { name: 'Sankalp', path: '/sankalp', isLink: true },
         { name: 'Achievements', path: '/achievements', isLink: true },
         { name: 'Events', path: '/events', isLink: true },
         { name: 'Our Team', path: '/ourteam', isLink: true },
         { name: 'Contact Us', path: '/contactus', isLink: true },
     ];
-
-    const filteredItems = menuItems.filter(item => !item.homeOnly || isHomePage);
 
     return (
         <nav id="navigation" className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
@@ -34,7 +32,7 @@ const Navbar = () => {
 
                 {/* Desktop Nav */}
                 <div className="hidden lg:flex items-center gap-6">
-                    {filteredItems.map((item) => (
+                    {menuItems.map((item) => (
                         item.isLink ? (
                             <Link key={item.name} to={item.path} className="text-[11px] font-medium text-neutral-400 hover:text-white transition-colors uppercase tracking-wide">
                                 {item.name}
@@ -75,7 +73,7 @@ const Navbar = () => {
                             className="absolute top-full left-0 right-0 mt-4 bg-black/90 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 lg:hidden flex flex-col gap-4 shadow-2xl z-50 overflow-hidden"
                         >
                             <div className="flex flex-col gap-4">
-                                {filteredItems.map((item) => (
+                                {menuItems.map((item) => (
                                     item.isLink ? (
                                         <Link
                                             key={item.name}
