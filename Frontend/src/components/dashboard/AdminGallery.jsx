@@ -14,7 +14,7 @@ const AdminGallery = () => {
     const [selectedImages, setSelectedImages] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/achievements/gallery`;
+    const API_BASE_URL = 'https://club-excel-official-website.onrender.com/api/achievements/gallery';
     const token = localStorage.getItem('adminToken');
 
     useEffect(() => {

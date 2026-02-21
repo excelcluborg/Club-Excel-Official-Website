@@ -22,9 +22,7 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
-            const response = await fetch(`${baseUrl}/api/auth/login`, {
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

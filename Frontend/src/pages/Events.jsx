@@ -14,7 +14,7 @@ const Events = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/event`);
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/event');
             const data = await response.json();
             setEvents(data);
         } catch (error) {

@@ -30,7 +30,7 @@ const AdminQueries = () => {
     const fetchQueries = async () => {
         try {
             const token = localStorage.getItem('adminToken');
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/contacts`, {
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/contacts', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -62,7 +62,7 @@ const AdminQueries = () => {
         const token = localStorage.getItem('adminToken');
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/contacts/${currentQuery._id}`, {
+            const response = await fetch(`https://club-excel-official-website.onrender.com/api/contacts/${currentQuery._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const AdminQueries = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/contacts/${id}`, {
+                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/contacts/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`

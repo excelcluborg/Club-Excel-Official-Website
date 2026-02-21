@@ -13,7 +13,7 @@ const AdminAchievements = () => {
     });
     const [selectedFiles, setSelectedFiles] = useState([]);
 
-    const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/achievements/achievements`;
+    const API_BASE_URL = 'https://club-excel-official-website.onrender.com/api/achievements/achievements';
     const token = localStorage.getItem('adminToken');
 
     useEffect(() => {

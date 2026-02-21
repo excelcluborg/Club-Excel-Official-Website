@@ -38,16 +38,14 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
         try {
             const token = localStorage.getItem('adminToken');
-            const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
             const [mRes, eRes, sRes, qRes, rRes] = await Promise.all([
-                fetch(`${baseUrl}/api/members`),
-                fetch(`${baseUrl}/api/event`),
-                fetch(`${baseUrl}/api/sankalpevent`),
-                fetch(`${baseUrl}/api/contacts`, {
+                fetch('https://club-excel-official-website.onrender.com/api/members'),
+                fetch('https://club-excel-official-website.onrender.com/api/event'),
+                fetch('https://club-excel-official-website.onrender.com/api/sankalpevent'),
+                fetch('https://club-excel-official-website.onrender.com/api/contacts', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch(`${baseUrl}/api/recruitment`, {
+                fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);

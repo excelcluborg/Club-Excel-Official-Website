@@ -25,7 +25,7 @@ const ContactUs = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/contacts`, {
+            const response = await fetch('https://club-excel-official-website.onrender.com/api/contacts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
