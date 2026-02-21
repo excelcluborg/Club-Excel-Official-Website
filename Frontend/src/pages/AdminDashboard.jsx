@@ -38,9 +38,7 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
         try {
             const token = localStorage.getItem('adminToken');
-            const baseUrl = window.location.hostname === 'localhost'
-                ? 'http://localhost:5000'
-                : 'https://club-excel-official-website.onrender.com';
+            const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
             const [mRes, eRes, sRes, qRes, rRes] = await Promise.all([
                 fetch(`${baseUrl}/api/members`),

@@ -14,9 +14,7 @@ const Achievements = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const baseUrl = window.location.hostname === 'localhost'
-                    ? 'http://localhost:5000'
-                    : 'https://club-excel-official-website.onrender.com';
+                const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
                 const [achRes, gallRes] = await Promise.all([
                     fetch(`${baseUrl}/api/achievements/achievements`),

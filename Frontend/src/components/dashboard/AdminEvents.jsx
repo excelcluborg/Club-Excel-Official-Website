@@ -35,7 +35,7 @@ const AdminEvents = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/event');
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/event`);
             const data = await response.json();
             setEvents(data);
         } catch (error) {
@@ -108,9 +108,10 @@ const AdminEvents = () => {
         });
 
         try {
+            const baseUrl = import.meta.env.VITE_API_BASE_URL;
             const url = currentEvent
-                ? `https://club-excel-official-website.onrender.com/api/event/${currentEvent._id}`
-                : 'https://club-excel-official-website.onrender.com/api/event';
+                ? `${baseUrl}/api/event/${currentEvent._id}`
+                : `${baseUrl}/api/event`;
 
             const method = currentEvent ? 'PUT' : 'POST';
 
@@ -156,7 +157,7 @@ const AdminEvents = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/event/${id}`, {
+                    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/event/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`

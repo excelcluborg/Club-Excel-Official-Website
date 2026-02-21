@@ -40,7 +40,7 @@ const AdminRecruitment = () => {
     const fetchData = async () => {
         const token = localStorage.getItem('adminToken');
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -63,7 +63,7 @@ const AdminRecruitment = () => {
 
     const fetchSettings = async () => {
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment/settings');
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment/settings`);
             const data = await response.json();
             if (response.ok) {
                 setSettings({ whatsappLink: data.whatsappLink || '' });
@@ -78,7 +78,7 @@ const AdminRecruitment = () => {
         setUpdatingSettings(true);
         const token = localStorage.getItem('adminToken');
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment/settings', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment/settings`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ const AdminRecruitment = () => {
         setUpdatingRecruit(true);
         const token = localStorage.getItem('adminToken');
         try {
-            const response = await fetch(`https://club-excel-official-website.onrender.com/api/recruitment/${currentRecruit._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment/${currentRecruit._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ const AdminRecruitment = () => {
             onConfirm: async () => {
                 const token = localStorage.getItem('adminToken');
                 try {
-                    const response = await fetch(`https://club-excel-official-website.onrender.com/api/recruitment/${id}`, {
+                    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment/${id}`, {
                         method: 'DELETE',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });

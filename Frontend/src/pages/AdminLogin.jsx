@@ -22,9 +22,7 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const baseUrl = window.location.hostname === 'localhost'
-                ? 'http://localhost:5000'
-                : 'https://club-excel-official-website.onrender.com';
+            const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
             const response = await fetch(`${baseUrl}/api/auth/login`, {
                 method: 'POST',

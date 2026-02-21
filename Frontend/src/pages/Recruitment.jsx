@@ -32,7 +32,7 @@ const Recruitment = () => {
 
     const fetchSettings = async () => {
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment/settings');
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment/settings`);
             const data = await response.json();
             if (data.whatsappLink) {
                 setWhatsappLink(data.whatsappLink);
@@ -50,7 +50,7 @@ const Recruitment = () => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            const response = await fetch('https://club-excel-official-website.onrender.com/api/recruitment', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/recruitment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
